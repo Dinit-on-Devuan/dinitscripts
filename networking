@@ -1,0 +1,5 @@
+type		= scripted
+command		= /etc/dinit.d/scripts/networking start
+stop-command	= /etc/dinit.d/scripts/networking stop
+
+depends-on	= mount
