@@ -30,4 +30,5 @@ This project includes any script needed to boot a Devuan with Dinit.
 | ttys          | Console login                                                | tty1,tty2,tty3,tty4,tty5,tty6 | 
 
 [1] Its started after cryptsetup &...
+
 [2] Based on Debian/Devuan [Service name] sysvinit script
