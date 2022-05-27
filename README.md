@@ -19,7 +19,7 @@ This project includes any script needed to boot a Devuan with Dinit.
 | tmpfs         | Mounting /tmp                                                |                               |
 | swap          | Mount swap partition/files                                   | NOT enabled by default!       |
 | single        | Single-user mode. This just starts a shell on the console    |                               |
-| fsck          | Checking filesystem's via fsck                               | Waits for mount.d [1]         |
+| fsck          | Checking filesystems via fsck                                | Waits for mount.d [1]         |
 | mount-all     | Mounting all filesystems                                     | Waits for mount.d [1]         |
 | root-rw       | Remounting root (/) filesystem as read-write                 |                               |
 | mount         | Internal service waits for root-rw, cgroups, pseudofs, tmpfs |                               |
