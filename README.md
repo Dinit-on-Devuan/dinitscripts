@@ -25,10 +25,9 @@ This project includes any script needed to boot a Devuan with Dinit.
 | mount         | Internal service waits for root-rw, cgroups, pseudofs, tmpfs |                               |
 | networking    | Raise network interfaces                                     | Based on sysvinit script [2]  |
 | hwclock       | Seting system time from hardware clock                       |                               |
-| rsyslog       | enhanced syslogd                                             | Based on sysvinit scirpt [2]  |
 | loginready    | Waits for system become ready for loading ttys               |                               |
 | ttys          | Console login                                                | tty1,tty2,tty3,tty4,tty5,tty6 | 
 
 [1] Its started after cryptsetup &...
 
-[2] Based on Debian/Devuan [Service name] sysvinit script
+[2] Based on Debian/Devuan networking/ifupdown sysvinit script

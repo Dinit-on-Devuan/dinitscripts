@@ -1,7 +1,0 @@
-type = scripted
-smooth-recovery = true
-command = /etc/dinit.d/scripts/rsyslog start
-stop-command = /etc/dinit.d/scripts/rsyslog stop
-options = starts-log
-
-depends-on = mount
