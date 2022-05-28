@@ -6,13 +6,13 @@
 ## Dinit on Devuan Project https://git.mobintestserver.ir/Dinit_on_Devuan
 
 ## Print useful info
-sleep 5
+clear
 echo "Welcome to recovery/resuce mode!"
 echo "Dont panic! Your system failed to boot & Dinit loads recovery service & Single-user mode"
 
 ## Try to mount root as read-write filesystem
 echo ""
-echo "Trying to remounting root (/) as read-write filesystem"
+echo "Trying to remounting root (/) as read-write filesystem..."
 /bin/mount -o remount,rw /
 if [ $? -eq 0 ] ; then
   echo "Remounting root (/) as read-write filesystem is success"
@@ -22,9 +22,10 @@ fi
 
 ## Try to set hostname from /etc/hostname
 echo ""
-echo "Trying to setting hostname from /etc/hostname"
+echo "Trying to setting hostname from /etc/hostname..."
+/etc/dinit.d/scripts/hostname
 if [ $? -eq 0 ] ; then
-  echo "Setting hostname from /etc/hostname is seccess"
+  echo "Setting hostname from /etc/hostname is success"
   else
   echo "FAILED to setting hostname from /etc/hostname"
 fi
@@ -32,7 +33,7 @@ fi
 ## Try to connect to internet via networking/ifupdown
 ## Disabled by default
 #echo ""
-#echo "Trying to enable networking interfaces"
+#echo "Trying to enable networking interfaces..."
 #/etc/dinit.d/scripts/networking start
 #if [ $? -eq 0 ] ; then
 #  echo "Enable networking/ifupdown interfaces is success"
@@ -48,6 +49,15 @@ echo "Enable network interfaces: '/etc/dinit.d/scripts/networking start'"
 echo "Enable ssh daemon: 'mkdir /run/sshd & /usr/sbin/sshd &'"
 echo "Enable dbus-daemon: '/etc/dinit.d/scripts/dbus-pre & dbus-daemon --system --nofork --nopidfile --print-address &'"
 echo "Enable NetworkManager (NEED dbus-daemon): 'NetworkManager -d &'"
+echo "You can read useful command at /run/help file: 'cat /run/help'"
+
+## Print useful commands at file
+echo "Useful commands on recovery/rescue mode" > /run/help
+echo "Remount root(/) as read-write: '/bin/mount -o remount,rw /'" >> /run/help
+echo "Enable network interfaces: '/etc/dinit.d/scripts/networking start'" >> /run/help
+echo "Enable ssh daemon 'mkdir /run/sshd & /usr/sbin/sshd &'" >> /run/help
+echo "Enable dbus-daemon: '/etc/dinit.d/scripts/dbus-pre & dbus-daemon --system --nofork --nopidfile --print-address &'" >> /run/help
+echo "Enable NetworkManager (NEED dbus-daemon): 'NetworkManager -d &'" >> /run/help
 
 SHEEL="/bin/bash"
 ## Load $SHEEL
