@@ -9,7 +9,7 @@ This project includes any script needed to boot a Devuan with Dinit.
 | Service name  | Description                                                  | Note                          |
 | --------------|--------------------------------------------------------------|-------------------------------|
 | boot          | First service started by dinit at boot time                  | Its start other services      |
-| recovery      | Recovery/rescue mode. when dinit fail to boot. start it.     | NOT enable by default!(its ok)|
+| recovery      | Recovery/rescue mode. when dinit fail to boot starts it.     | NOT enable by default!(its ok)|
 | pseudofs      | Mounting /proc & other kernel virtual file systems           |                               |
 | udevd         | Udev device (/dev) manager                                   | eudev used on Devuan          |
 | udev-trigger  | Trigger udev events for already-present devices              |                               |
@@ -24,6 +24,7 @@ This project includes any script needed to boot a Devuan with Dinit.
 | mount-all     | Mounting all filesystems                                     | Waits for mount.d [1]         |
 | root-rw       | Remounting root (/) filesystem as read-write                 |                               |
 | mount         | Internal service waits for root-rw, cgroups, pseudofs, tmpfs |                               |
+| apparmor      | AppArmor script. This script loads all AppArmor profiles     |                               |
 | networking    | Raise network interfaces                                     | Based on sysvinit script [2]  |
 | hwclock       | Seting system time from hardware clock                       |                               |
 | loginready    | Waits for system become ready for loading ttys               |                               |
