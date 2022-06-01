@@ -135,9 +135,9 @@ start)
 	fi
 	if ifup -a $exclusions $verbose && ifup_hotplug $exclusions $verbose
 	then
-	    echo $(date) "[INFO] Configuring network interfaces has return $?"
+	    echo $(date) "[INFO] Configuring network interfaces has return $?: Done!"
 	else
-	    echo $(date) "[ERR] Configuring network interfaces has return $?"
+	    echo $(date) "[ERR] Configuring network interfaces has return $?: FAILED" >> /dev/stderr
 	fi
 	;;
 
@@ -147,9 +147,9 @@ stop)
 
 	echo $(date) "[INFO] Deconfiguring network interfaces..."
 	if ifdown -a --exclude=lo $verbose; then
-	    echo $(date) "[INFO] Deconfiguring network interfaces has return $?"
+	    echo $(date) "[INFO] Deconfiguring network interfaces has return $?: Done!"
 	else
-	    echo $(date) "[ERR] Deconfiguring network interfaces has return $?"
+	    echo $(date) "[ERR] Deconfiguring network interfaces has return $?: FAILED!" >> /dev/stderr
 	fi
 	;;
 
