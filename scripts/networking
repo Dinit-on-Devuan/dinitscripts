@@ -38,22 +38,22 @@ process_exclusions() {
 
 process_options() {
     [ -e /etc/network/options ] || return 0
-    echo $(date -u) "[WARN] /etc/network/options still exists and it will be IGNORED! Please use /etc/sysctl.conf instead."
+    echo $(date) "[WARN] /etc/network/options still exists and it will be IGNORED! Please use /etc/sysctl.conf instead."
 }
 
 check_ifstate() {
     if [ ! -d "$RUN_DIR" ] ; then
 	if ! mkdir -p "$RUN_DIR" ; then
-	    echo $(date -u) "[ERR] can't create $RUN_DIR" >> /dev/stderr
+	    echo $(date) "[ERR] can't create $RUN_DIR" >> /dev/stderr
 	    exit 1
 	fi
 	if ! chown root:netdev "$RUN_DIR" ; then
-	    echo $(date -u) "[WARN] can't chown $RUN_DIR"
+	    echo $(date) "[WARN] can't chown $RUN_DIR"
 	fi
     fi
     if [ ! -r "$IFSTATE" ] ; then
 	if ! :> "$IFSTATE" ; then
-	    echo $(date -u) "[ERR] can't initialise $IFSTATE" >> /dev/stderr
+	    echo $(date) "[ERR] can't initialise $IFSTATE" >> /dev/stderr
 	    exit 1
 	fi
     fi
@@ -63,20 +63,20 @@ check_network_file_systems() {
     [ -e /proc/mounts ] || return 0
 
     if [ -e /etc/iscsi/iscsi.initramfs ]; then
-	echo $(date -u) "[WARN] not deconfiguring network interfaces: iSCSI root is mounted."
+	echo $(date) "[WARN] not deconfiguring network interfaces: iSCSI root is mounted."
 	exit 0
     fi
 
     while read DEV MTPT FSTYPE REST; do
 	case $DEV in
 	/dev/nbd*|/dev/nd[a-z]*|/dev/etherd/e*|curlftpfs*)
-	    echo $(date -u) "[WARN] not deconfiguring network interfaces: network devices still mounted."
+	    echo $(date) "[WARN] not deconfiguring network interfaces: network devices still mounted."
 	    exit 0
 	    ;;
 	esac
 	case $FSTYPE in
 	nfs|nfs4|smbfs|ncp|ncpfs|cifs|coda|ocfs2|gfs|pvfs|pvfs2|fuse.httpfs|fuse.curlftpfs)
-	    echo $(date -u) "[WARN] not deconfiguring network interfaces: network file systems still mounted."
+	    echo $(date) "[WARN] not deconfiguring network interfaces: network file systems still mounted."
 	    exit 0
 	    ;;
 	esac
@@ -89,7 +89,7 @@ check_network_swap() {
     while read DEV MTPT FSTYPE REST; do
 	case $DEV in
 	/dev/nbd*|/dev/nd[a-z]*|/dev/etherd/e*)
-	    echo $(date -u) "[WARN] not deconfiguring network interfaces: network swap still mounted."
+	    echo $(date) "[WARN] not deconfiguring network interfaces: network swap still mounted."
 	    exit 0
 	    ;;
 	esac
@@ -122,12 +122,12 @@ start)
 
 	if [ "$CONFIGURE_INTERFACES" = no ]
 	then
-	    echo $(date -u) "[WARN] Not configuring network interfaces, see /etc/default/networking"
+	    echo $(date) "[WARN] Not configuring network interfaces, see /etc/default/networking"
 	    exit 0
 	fi
 	set -f
 	exclusions=$(process_exclusions)
-	echo $(date -u) "[INFO] Configuring network interfaces..."
+	echo $(date) "[INFO] Configuring network interfaces..."
 	if [ -x /bin/udevadm ]; then
 		if [ -n "$(ifquery --list --exclude=lo)" ] || [ -n "$(ifquery --list --allow=hotplug)" ]; then
 			/bin/udevadm settle || true
@@ -135,9 +135,9 @@ start)
 	fi
 	if ifup -a $exclusions $verbose && ifup_hotplug $exclusions $verbose
 	then
-	    echo $(date -u) "[INFO] Configuring network interfaces has return $?"
+	    echo $(date) "[INFO] Configuring network interfaces has return $?"
 	else
-	    echo $(date -u) "[ERR] Configuring network interfaces has return $?"
+	    echo $(date) "[ERR] Configuring network interfaces has return $?"
 	fi
 	;;
 
@@ -145,42 +145,13 @@ stop)
 	check_network_file_systems
 	check_network_swap
 
-	echo $(date -u) "[INFO] Deconfiguring network interfaces..."
+	echo $(date) "[INFO] Deconfiguring network interfaces..."
 	if ifdown -a --exclude=lo $verbose; then
-	    echo $(date -u) "[INFO] Deconfiguring network interfaces has return $?"
+	    echo $(date) "[INFO] Deconfiguring network interfaces has return $?"
 	else
-	    echo $(date -u) "[ERR] Deconfiguring network interfaces has return $?"
+	    echo $(date) "[ERR] Deconfiguring network interfaces has return $?"
 	fi
 	;;
-
-#reload)
-#	process_options
-#
-#	echo $(date -u)"[INFO] Reloading network interfaces configuration"
-#	state=$(ifquery --state)
-#	ifdown -a --exclude=lo $verbose || true
-#	if ifup --exclude=lo $state $verbose ; then
-#	    log_action_end_msg $?
-#	else
-#	    log_action_end_msg $?
-#	fi
-#	;;
-
-#force-reload|restart)
-#	process_options
-#
-#	log_warning_msg "Running $0 $1 is deprecated because it may not re-enable some interfaces"
-#	log_action_begin_msg "Reconfiguring network interfaces"
-#	ifdown -a --exclude=lo $verbose || true
-#	set -f
-#	exclusions=$(process_exclusions)
-#	if ifup -a --exclude=lo $exclusions $verbose && ifup_hotplug $exclusions $verbose
-#	then
-#	    log_action_end_msg $?
-#	else
-#	    log_action_end_msg $?
-#	fi
-#	;;
 
 *)
 	echo "Usage: /etc/dinit.d/scripts/networking networking/ifupdown script for Debina/Devuan with Dinit. DONT USE IT DIRECTLY! using dinitctl(8) for controling networking service"
