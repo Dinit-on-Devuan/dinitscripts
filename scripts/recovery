@@ -12,33 +12,33 @@ echo "Dont panic! Your system failed to boot & Dinit loads recovery service & Si
 
 ## Try to mount root as read-write filesystem
 echo ""
-echo "Trying to remounting root (/) as read-write filesystem..."
+echo -e "Trying to remounting root (/) as read-write filesystem... \cof"
 /bin/mount -o remount,rw /
 if [ $? -eq 0 ] ; then
-  echo "Remounting root (/) as read-write filesystem is success"
+  echo "Done!"
   else
-  echo "FAILED to remounting root (/) as read-write filesystem. Your root is BROKEN!"
+  echo "FAILED! Your root is BROKEN!"
 fi
 
 ## Try to set hostname from /etc/hostname
 echo ""
-echo "Trying to setting hostname from /etc/hostname..."
+echo -e "Trying to setting hostname from /etc/hostname... \cof"
 /etc/dinit.d/scripts/hostname
 if [ $? -eq 0 ] ; then
-  echo "Setting hostname from /etc/hostname is success"
+  echo "Done!"
   else
-  echo "FAILED to setting hostname from /etc/hostname"
+  echo "FAILED!"
 fi
 
 ## Try to connect to internet via networking/ifupdown
 ## Disabled by default
 #echo ""
-#echo "Trying to enable networking interfaces..."
+#echo -e "Trying to enable networking interfaces... \cof"
 #/etc/dinit.d/scripts/networking start
 #if [ $? -eq 0 ] ; then
-#  echo "Enable networking/ifupdown interfaces is success"
+#  echo "Done!"
 #  else
-#  echo "FAIELD to enable networking/ifupdown interfaces!"
+#  echo "FAIELD!"
 #fi
 
 ## Print useful commands
@@ -49,7 +49,7 @@ echo "Enable network interfaces: '/etc/dinit.d/scripts/networking start'"
 echo "Enable ssh daemon: 'mkdir /run/sshd & /usr/sbin/sshd &'"
 echo "Enable dbus-daemon: '/etc/dinit.d/scripts/dbus-pre & dbus-daemon --system --nofork --nopidfile --print-address &'"
 echo "Enable NetworkManager (NEED dbus-daemon): 'NetworkManager -d &'"
-echo "You can read useful command at /run/help file: 'cat /run/help'"
+echo "You can read useful commands at /run/help file: 'cat /run/help'"
 
 ## Print useful commands at file
 echo "Useful commands on recovery/rescue mode" > /run/help
