@@ -48,7 +48,7 @@ echo "Remount root (/) as read-write: '/bin/mount -o remount,rw /'"
 echo "Enable network interfaces: '/etc/dinit.d/scripts/networking start'"
 echo "Enable ssh daemon: 'mkdir /run/sshd & /usr/sbin/sshd &'"
 echo "Enable dbus-daemon: '/etc/dinit.d/scripts/dbus-pre & dbus-daemon --system --nofork --nopidfile --print-address &'"
-echo "Enable NetworkManager (NEED dbus-daemon): 'NetworkManager -d &'"
+echo "Enable NetworkManager (NEED dbus-daemon): 'NetworkManager'"
 echo "You can read useful commands at /run/help file: 'cat /run/help'"
 
 ## Print useful commands at file
@@ -57,7 +57,7 @@ echo "Remount root(/) as read-write: '/bin/mount -o remount,rw /'" >> /run/help
 echo "Enable network interfaces: '/etc/dinit.d/scripts/networking start'" >> /run/help
 echo "Enable ssh daemon 'mkdir /run/sshd & /usr/sbin/sshd &'" >> /run/help
 echo "Enable dbus-daemon: '/etc/dinit.d/scripts/dbus-pre & dbus-daemon --system --nofork --nopidfile --print-address &'" >> /run/help
-echo "Enable NetworkManager (NEED dbus-daemon): 'NetworkManager -d &'" >> /run/help
+echo "Enable NetworkManager (NEED dbus-daemon): 'NetworkManager'" >> /run/help
 
 SHEEL="/bin/bash"
 ## Load $SHEEL
