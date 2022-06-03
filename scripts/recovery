@@ -12,7 +12,7 @@ echo "Dont panic! Your system failed to boot & Dinit loads recovery service & Si
 
 ## Try to mount root as read-write filesystem
 echo ""
-echo -e "Trying to remounting root (/) as read-write filesystem... \cof"
+echo "Trying to remounting root (/) as read-write filesystem... \cof"
 /bin/mount -o remount,rw /
 if [ $? -eq 0 ] ; then
   echo "Done!"
@@ -22,7 +22,7 @@ fi
 
 ## Try to set hostname from /etc/hostname
 echo ""
-echo -e "Trying to setting hostname from /etc/hostname... \cof"
+echo "Trying to setting hostname from /etc/hostname... \cof"
 /etc/dinit.d/scripts/hostname
 if [ $? -eq 0 ] ; then
   echo "Done!"
@@ -33,7 +33,7 @@ fi
 ## Try to connect to internet via networking/ifupdown
 ## Disabled by default
 #echo ""
-#echo -e "Trying to enable networking interfaces... \cof"
+#echo "Trying to enable networking interfaces... \cof"
 #/etc/dinit.d/scripts/networking start
 #if [ $? -eq 0 ] ; then
 #  echo "Done!"
