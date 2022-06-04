@@ -1,5 +1,5 @@
-type            = scripted
-command         = /sbin/udevd --daemon
-stop-command    = /sbin/udevadm control -e
-restart         = false
-depends-on      = pseudofs
+type = scripted
+command = /sbin/udevd --daemon
+stop-command = /sbin/udevadm control -e
+restart = false
+depends-on = pseudofs

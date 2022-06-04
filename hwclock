@@ -8,5 +8,4 @@ command = /sbin/hwclock --hctosys
 #stop-command = /sbin/hwclock --systohc
 
 restart = false
-
 depends-on = udevd

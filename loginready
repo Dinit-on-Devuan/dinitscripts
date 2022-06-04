@@ -1,4 +1,4 @@
-type        = internal
-restart     = false
-options     = runs-on-console
-waits-for   = mount
+type = internal
+restart = false
+options = runs-on-console
+waits-for = mount
