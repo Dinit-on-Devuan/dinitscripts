@@ -1,0 +1,6 @@
+# exec /etc/rc.local
+
+type = scripted
+command = /etc/rc.local
+
+depends-on = loginready
