@@ -4,4 +4,5 @@ type = process
 command = /etc/dinit.d/scripts/recovery
 restart = false
 options = shares-console
+options = starts-rwfs
 chain-to = boot
