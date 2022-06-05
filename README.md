@@ -11,6 +11,7 @@ This project includes any script needed to boot a Devuan with Dinit.
 | boot          | First service started by dinit at boot time                  | Its start other services       |
 | recovery      | Recovery/rescue mode. when dinit fail to boot starts it.     | NOT enabled by default!(its ok)|
 | pseudofs      | Mounting /proc & other kernel virtual file systems           |                                |
+| binfmt        | Enable support for additional executable binary formats      |                                |
 | udevd         | Udev device (/dev) manager                                   | eudev used on Devuan           |
 | udev-trigger  | Trigger udev events for already-present devices              |                                |
 | udev-sttele   | Wait for the udevd childs to finish                          |                                |
