@@ -64,5 +64,5 @@ SHEEL="/bin/bash"
 echo ""
 echo "Now, you have a shell for restore system"
 echo ""$SHEEL" is loaded. Good Luck :)"
-echo "NOTE: For restarting dinit boot service. type: 'exit' AFTER restore system!"
+echo "NOTE: Dont use 'exit' command. rebooting system via 'reboot' or shuting down system via 'poweroff'! 'exit' command has buggy!"
 exec $SHEEL
