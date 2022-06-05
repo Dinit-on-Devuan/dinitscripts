@@ -30,6 +30,7 @@ This project includes any script needed to boot a Devuan with Dinit.
 | networking    | Raise network interfaces                                     | Based on sysvinit script [2]   |
 | hwclock       | Seting system time from hardware clock                       |                                |
 | loginready    | Waits for system become ready for loading ttys & rc.local    |                                |
+| dmesg         | Writing dmesg(1) in /var/log/dmesg.log
 | rc.local      | Exec /etc/rc.local                                           | depends-on = loginready        |
 | ttys          | Console login(s)                                             | tty1,tty2,tty3,tty4,tty5,tty6  | 
 
