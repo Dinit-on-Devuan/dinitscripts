@@ -1,4 +1,0 @@
-# a Fake service. using for activiating dinitctl at recovery mode.
-
-type = scripted
-command = echo "FAKE"
