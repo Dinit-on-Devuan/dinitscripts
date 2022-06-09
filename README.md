@@ -22,12 +22,13 @@ This project includes any script needed to boot a Devuan with Dinit.
 | swap          | Mount swap partition/files                                   | NOT enabled by default!        |
 | single        | Single-user mode. This just starts a shell on the console    |                                |
 | fsck          | Checking filesystems via fsck                                | Waits for mount.d [1]          |
-| cleanup       | Cleanup some files (/etc/nologin &...)
+| cleanup       | Cleanup some files (/etc/nologin &...)                       |                                |
 | mount-all     | Mounting all filesystems                                     | Waits for mount.d [1]          |
 | root-rw       | Remounting root (/) filesystem as read-write                 |                                |
+| urandom       | Save and restore random seed between restarts                | Based on sysvinit script [2]   |
 | mount         | Internal service waits for root-rw, cgroups, pseudofs, tmpfs |                                |
 | apparmor      | AppArmor script. This script loads all AppArmor profiles     |                                |
-| networking    | Raise network interfaces                                     | Based on sysvinit script [2]   |
+| networking    | Raise network interfaces                                     | Based on sysvinit script [3]   |
 | hwclock       | Seting system time from hardware clock                       |                                |
 | loginready    | Waits for system become ready for loading ttys & rc.local    |                                |
 | dmesg         | Writing dmesg(1) in /var/log/dmesg.log
@@ -36,4 +37,6 @@ This project includes any script needed to boot a Devuan with Dinit.
 
 [1] Its started after cryptsetup &...
 
-[2] Based on Debian/Devuan networking/ifupdown sysvinit script
+[2] Based on Debian/Devuan urandom sysvinit script
+
+[3] Based on Debian/Devuan networking/ifupdown sysvinit script

@@ -1,0 +1,7 @@
+type = scripted
+command = /etc/dinit.d/scripts/urandom load
+stop-command = /etc/dinit.d/scripts/urandom save
+restart = false
+waits-for = pseudofs
+waits-for = udev-settle
+waits-for = root-rw
