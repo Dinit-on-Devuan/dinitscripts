@@ -1,0 +1,12 @@
+#!/bin/sh
+
+## /etc/dinit.d/config/rc.shutdown
+## Its file loaded by dinit when system going to poweroff/reboot/halt
+
+if [ -d /etc/local.d ]; then
+    for file in /etc/local.d/*.stop; do
+        sh "$file"
+    done
+fi
+
+## Enter your custom commands here.

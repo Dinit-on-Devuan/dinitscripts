@@ -1,6 +1,7 @@
 # exec /etc/rc.local
 
 type = scripted
-command = /etc/rc.local
+command = /etc/dinit.d/config/rc.local
+stop-command = /etc/dinit.d/config/rc.shutdown
 
 depends-on = loginready

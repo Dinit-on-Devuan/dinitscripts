@@ -1,0 +1,12 @@
+#!/bin/sh
+
+## /etc/dinit.d/config/rc.local
+## Its file loaded by dinit after loginready service
+
+if [ -d /etc/local.d ]; then
+    for file in /etc/local.d/*.start; do
+        sh "$file"
+    done
+fi
+
+## Enter your custom commands here.
