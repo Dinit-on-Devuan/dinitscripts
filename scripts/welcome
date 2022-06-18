@@ -1,0 +1,25 @@
+#!/bin/sh
+BOLD=$(tput bold)
+NORMAL=$(tput sgr0)
+DINIT_VER=$(dinit --version | grep version)
+OS_VER=$(cat /etc/issue.net)
+
+cat /etc/issue | grep Debian > /dev/null
+if [ $? -eq 0 ]; then
+  OS=Debian
+fi
+cat /etc/issue | grep Ubuntu > /dev/null
+if [ $? -eq 0 ]; then
+  OS=Ubuntu
+fi
+cat /etc/issue | grep Devuan > /dev/null
+if [ $? -eq 0 ]; then
+  OS=Devuan
+else
+  OS=UNKNOWN
+fi
+
+echo ""
+echo "${BOLD}Welcome to $OS GNU/Linux!${NORMAL}"
+echo "${BOLD}$DINIT_VER${NORMAL} is now booting up ${BOLD}$OS_VER${NORMAL}"
+echo ""

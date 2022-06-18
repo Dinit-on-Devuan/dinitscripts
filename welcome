@@ -1,0 +1,4 @@
+## Its service just print a "Welcome" Message!
+type = scripted
+command = /etc/dinit.d/scripts/welcome
+options = starts-on-console start-interruptible skippable
