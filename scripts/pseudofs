@@ -2,7 +2,7 @@
 
 mountpoint -q /sys                 || mount -t sysfs sys /sys -o nosuid,noexec,nodev
 mountpoint -q /sys/kernel/security || mount -n -t securityfs securityfs /sys/kernel/security
-[ -d /sys/firmware/efi ] && (mountpoint -q /sys/firmware/efi/efivars || mount -n -t efivarfs -o ro efivarfs /sys/firmware/efi/efivars)
+[ -d /sys/firmware/efi ] && (mountpoint -q /sys/firmware/efi/efivars || mount -n -t efivarfs -o rw efivarfs /sys/firmware/efi/efivars)
 mountpoint -q /proc || mount -t proc proc /proc -o nosuid,noexec,nodev
 mountpoint -q /dev  || mount -t devtmpfs dev /dev -o mode=0755,nosuid
 
